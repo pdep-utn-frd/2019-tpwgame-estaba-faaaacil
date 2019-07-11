@@ -12,13 +12,13 @@ program SnakeGame {
 
 //	VISUALES
 	game.addVisualIn(manzana, game.at(5,1))
-	game.addVisualCharacter(viborita)
+	game.addVisual(viborita)
 	
 // COLISION
-	game.whenCollideDo(viborita , { manzana => viborita.comer(manzana)})
+	game.whenCollideDo(viborita , { comida => viborita.comer(comida)})
 
 //	TECLADO
-	game.onTick(500, "MoverViborita", { => viborita.avanzar() })
+	game.onTick(500, "MoverViborita", { viborita.avanzar() })
 	keyboard.up().onPressDo { viborita.irArriba() }
 	keyboard.down().onPressDo { viborita.irAbajo() }
 	keyboard.left().onPressDo { viborita.irIzquierda() }

@@ -1,4 +1,4 @@
-
+import wollok.game.*
 class Direccion {
 	method siguiente(posicion)
 }

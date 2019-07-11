@@ -4,36 +4,36 @@ import direcciones.*
 object viborita {
 	
 	var property direccion = derecha
-	var property posicion = game.at(3,3)
+	var property position = game.at(5,5)
 	method image() = "pepita.png"
 	
 	method irArriba() {
 		direccion = arriba
-		self.avanzar()
+		
 	}
 
 	method irAbajo() {
 		direccion = abajo
-		self.avanzar()
+		
 	}
 
 	method irIzquierda() {
 		direccion = izquierda
-		self.avanzar()
+		
 	}
 
 	method irDerecha() {
 		direccion = derecha
-		self.avanzar()
+		
 	}
 	
 	method avanzar() {
-		posicion = direccion.siguiente(posicion)
+		position = direccion.siguiente(position)
 	}
 	
-	method comer(manzana){
-		game.removeVisual(manzana)
-		game.addVisualIn(manzana, game.at(1.randomUpTo(9).roundUp(), 1.randomUpTo(9).roundUp()))
+	method comer(comida){
+		game.removeVisual(comida)
+		game.addVisualIn(comida, game.at(1.randomUpTo(9).roundUp(), 1.randomUpTo(9).roundUp()))
 	}
 	
 	
