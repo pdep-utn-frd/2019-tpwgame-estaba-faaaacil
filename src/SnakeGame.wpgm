@@ -1,7 +1,8 @@
 import wollok.game.*
 import viborita.*
+import direcciones.*
 
-program PepitaGame {
+program SnakeGame {
 	
 //	CONFIG	
 	game.title("Snake Game")
@@ -17,11 +18,11 @@ program PepitaGame {
 	game.whenCollideDo(viborita , { manzana => viborita.comer(manzana)})
 
 //	TECLADO
-	game.onTick(500, "MoverViborita", { => viborita.movete() })
-	keyboard.up().onPressDo { viborita.direccion(arriba) }
-	keyboard.down().onPressDo { viborita.direccion(abajo) }
-	keyboard.left().onPressDo { viborita.direccion() }
-	keyboard.right().onPressDo { viborita.move(viborita.position().right(1)) }
+	game.onTick(500, "MoverViborita", { => viborita.avanzar() })
+	keyboard.up().onPressDo { viborita.irArriba() }
+	keyboard.down().onPressDo { viborita.irAbajo() }
+	keyboard.left().onPressDo { viborita.irIzquierda() }
+	keyboard.right().onPressDo { viborita.irDerecha() }
 		
 //	START
 	game.start()
