@@ -1,0 +1,28 @@
+import wollok.game.*
+import viborita.*
+
+program PepitaGame {
+	
+//	CONFIG	
+	game.title("Snake Game")
+	game.height(10)
+	game.width(10)
+	game.ground("suelo.png")
+
+//	VISUALES
+	game.addVisualIn(manzana, game.at(5,1))
+	game.addVisualCharacter(viborita)
+	
+// COLISION
+	game.whenCollideDo(viborita , { manzana => viborita.comer(manzana)})
+
+//	TECLADO
+	game.onTick(500, "MoverViborita", { => viborita.movete() })
+	keyboard.up().onPressDo { viborita.direccion(arriba) }
+	keyboard.down().onPressDo { viborita.direccion(abajo) }
+	keyboard.left().onPressDo { viborita.direccion() }
+	keyboard.right().onPressDo { viborita.move(viborita.position().right(1)) }
+		
+//	START
+	game.start()
+}
