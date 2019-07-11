@@ -1,6 +1,7 @@
 import wollok.game.*
 import viborita.*
 import direcciones.*
+import visuales.*
 
 program SnakeGame {
 	
@@ -12,13 +13,18 @@ program SnakeGame {
 
 //	VISUALES
 	game.addVisualIn(manzana, game.at(5,1))
+	pared.numeros().forEach({ x => game.addVisualIn(pared, game.at(0,x-1))})
+	pared.numeros().forEach({ x => game.addVisualIn(pared, game.at(x,9))})
+	pared.numeros().forEach({ x => game.addVisualIn(pared, game.at(x,0))})
+	pared.numeros().forEach({ x => game.addVisualIn(pared, game.at(9,x))})
 	game.addVisual(viborita)
 	
 // COLISION
 	game.whenCollideDo(viborita , { comida => viborita.comer(comida)})
+	game.whenCollideDo(viborita, { pared => viborita.perder() })
 
 //	TECLADO
-	game.onTick(500, "MoverViborita", { viborita.avanzar() })
+	game.onTick(200, "MoverViborita", { viborita.avanzar() })
 	keyboard.up().onPressDo { viborita.irArriba() }
 	keyboard.down().onPressDo { viborita.irAbajo() }
 	keyboard.left().onPressDo { viborita.irIzquierda() }

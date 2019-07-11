@@ -33,7 +33,11 @@ object viborita {
 	
 	method comer(comida){
 		game.removeVisual(comida)
-		game.addVisualIn(comida, game.at(1.randomUpTo(9).roundUp(), 1.randomUpTo(9).roundUp()))
+		game.addVisualIn(comida, game.at(1.randomUpTo(8).roundUp(), 1.randomUpTo(8).roundUp()))
+	}
+	
+	method perder(){
+		game.stop()
 	}
 	
 	
@@ -41,6 +45,4 @@ object viborita {
 
 object manzana {
 	method image() = "manzana.png"
-	
-
 }
