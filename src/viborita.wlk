@@ -42,12 +42,22 @@ object viborita {
 		puntos += 1
 		game.say(self, self.puntos().toString())
 		self.expandirse()
+		if(puntos == 8) {
+			self.ganar()
+		}
 		
 	}
 	
 	method expandirse(){
-		game.addVisualIn(cuerpo, game.at(5,5))
+		game.addVisualIn(pared, game.at(1.randomUpTo(8).roundUp(), 1.randomUpTo(8).roundUp()))
 	}
+	method ganar(){
+		game.removeVisual(self)
+		game.say(pared, "GANASTE, Presionar enter para Cerrar")
+		keyboard.enter().onPressDo{game.stop()}
+		
+	}
+	
 	method perder(){
 		game.stop()
 	}
