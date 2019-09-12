@@ -36,24 +36,25 @@ object viborita {
 		position = direccion.siguiente(position)
 	}
 	
-	method comer(comida){
-		game.removeVisual(comida)
-		game.addVisualIn(comida, game.at(1.randomUpTo(8).roundUp(), 1.randomUpTo(8).roundUp()))
-		puntos += 1
-		game.say(self, self.puntos().toString())
-		self.expandirse()
-		if(puntos == 8) {
-			self.ganar()
+	method seEncuentraCon(algo){
+		if (algo != manzana) {
+			self.perder()
+		} else {
+			game.removeVisual(algo)
+			game.addVisualIn(algo, game.at(1.randomUpTo(8).roundUp(), 1.randomUpTo(8).roundUp()))
+			game.addVisualIn(new Pared(), game.at(1.randomUpTo(8).roundUp(), 1.randomUpTo(8).roundUp()))
+			puntos += 1
+			game.say(self,self.puntos().toString())
+			if (puntos == 8){
+				self.ganar()
+			}
 		}
 		
 	}
 	
-	method expandirse(){
-		game.addVisualIn(pared, game.at(1.randomUpTo(8).roundUp(), 1.randomUpTo(8).roundUp()))
-	}
 	method ganar(){
 		game.removeVisual(self)
-		game.say(pared, "GANASTE, Presionar enter para Cerrar")
+		game.say(manzana, "GANASTE, Presionar enter para Cerrar")
 		keyboard.enter().onPressDo{game.stop()}
 		
 	}

@@ -4,7 +4,6 @@ import direcciones.*
 import visuales.*
 
 program SnakeGame {
-	
 //	CONFIG	
 	game.title("Snake Game")
 	game.height(10)
@@ -13,15 +12,21 @@ program SnakeGame {
 
 //	VISUALES
 	game.addVisualIn(manzana, game.at(5,1))
-	pared.numeros().forEach({ x => game.addVisualIn(pared, game.at(0,x-1))})
-	pared.numeros().forEach({ x => game.addVisualIn(pared, game.at(x,9))})
-	pared.numeros().forEach({ x => game.addVisualIn(pared, game.at(x,0))})
-	pared.numeros().forEach({ x => game.addVisualIn(pared, game.at(9,x))})
+	const ancho = game.width() - 1
+	const largo = game.height() -1
+	
+	
+	
+	(1 .. ancho).forEach({ n => game.addVisualIn(new Pared(), new Position(x=n, y=0))})
+	(1 .. ancho).forEach({ n => game.addVisualIn(new Pared(), new Position(x=n, y=largo))})
+	(1 .. largo).forEach({ n => game.addVisualIn(new Pared(), new Position(x=0, y=n))})
+	(1 .. largo).forEach({ n => game.addVisualIn(new Pared(), new Position(x=ancho, y=n))})
+	
+
 	game.addVisual(viborita)
 	
 // COLISION
-	game.whenCollideDo(viborita , { comida => viborita.comer(comida)})
-	game.whenCollideDo(viborita, { pared => viborita.perder() })
+	game.whenCollideDo(viborita , { algo => viborita.seEncuentraCon(algo)})
 
 //	TECLADO
 	game.onTick(200, "MoverViborita", { viborita.avanzar() })
